@@ -8,9 +8,9 @@ const App = (() => {
   };
 
   /* CONFIG */
-  window.SUBJECTS = ["Math", "Science", "History", "English", "Art"];
-  window.ASSIGNMENT_TYPES = ["Homework", "Lab Report", "Essay", "Project", "Quiz"];
-  window.TEST_TYPES = ["Midterm", "Final", "Pop Quiz", "Presentation"];
+  window.SUBJECTS = ["DAA", "Elective", "CSA", "GBooks", "Ethics", "Entrep", "HCI", "Info", "PHED"];
+  window.ASSIGNMENT_TYPES = ["Homework", "Lab Activity", "Essay", "PPT", "Quiz"];
+  window.TEST_TYPES = ["MCQ", "Essay", "Identification", "Presentation", "Play"];
   window.DUE_DATES = ["Today", "Tomorrow", "This Week", "Next Week", "No Due Date"];
 
 
