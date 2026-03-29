@@ -1,6 +1,6 @@
 // service-worker.js
 
-const CACHE_NAME = "assignment-tracker-v1";
+const CACHE_NAME = "pickpal-v1";
 const ASSETS_TO_CACHE = [
   "/index.html",
   "/css/styles.css",
