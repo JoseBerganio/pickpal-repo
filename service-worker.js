@@ -4,7 +4,7 @@ const CACHE_NAME = "assignment-tracker-v1";
 const ASSETS_TO_CACHE = [
   "/",                    // index.html
   "/index.html",
-  "/css/style.css",
+  "/css/styles.css",
   "/js/app.js",
   "/js/ui.js",
   "/js/storage.js",
