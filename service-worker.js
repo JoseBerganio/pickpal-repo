@@ -8,6 +8,7 @@ const ASSETS_TO_CACHE = [
   "/js/app.js",
   "/js/ui.js",
   "/js/storage.js",
+  "/assets/icons"
   // Add any icons/images here
 ];
 
