@@ -1,198 +1,527 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
+/* ============================================================
+   ASSIGNMENT TRACKER — Refined Dark Productivity Aesthetic
+   Palette: Deep navy · Warm amber · Slate white
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --bg:           #0d1117;
+  --bg-surface:   #161b22;
+  --bg-card:      #1c2333;
+  --bg-card-alt:  #21293a;
+  --accent:       #e6a817;
+  --accent-dim:   rgba(230, 168, 23, 0.12);
+  --accent-glow:  rgba(230, 168, 23, 0.3);
+  --text-primary: #e8edf5;
+  --text-muted:   #7d8fa3;
+  --text-dim:     #4a5568;
+  --border:       rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(230, 168, 23, 0.35);
+  --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md:    0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg:    0 20px 50px rgba(0, 0, 0, 0.6);
+  --radius-sm:    8px;
+  --radius-md:    14px;
+  --radius-lg:    20px;
+  --radius-pill:  999px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --transition:   0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --bounce:       0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Header */
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+
+  /* Subtle noise texture */
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(230, 168, 23, 0.06) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ── Header ── */
 header {
-    background-color: darkcyan;
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
 }
 
 header h2 {
-    text-align: center;
-    color: white;
-    padding: 20px;
-    margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  text-align: center;
+  padding: 18px 24px;
+
+  /* Amber underline accent */
+  position: relative;
 }
 
-/* Add Assignment Button */
+header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: var(--radius-pill);
+}
+
+/* ── Page Fade-In ── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.list-container,
+.subject-type-container,
+.assignment-type-container,
+.test-type-container,
+.due-date-container,
+.publish-prompt-container {
+  animation: fadeSlideUp 0.4s ease both;
+}
+
+/* ── Dashboard Section ── */
+.assignment-list-homepage {
+  max-width: 1100px;
+  margin: 48px auto;
+  padding: 36px 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.assignment-list-homepage > h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+/* ── Add Assignment Button ── */
 .add-assignment {
-    background-color: darkcyan;
-    text-decoration: none;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 15px;
-    display: inline-block;
-    margin: 20px 0;
-    transition: 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #0d1117;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  margin: 20px 0;
+  transition: var(--transition);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+}
+
+.add-assignment::before {
+  content: '+';
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1;
 }
 
 .add-assignment:hover {
-    background-color: white;
-    color: black;
-    cursor: pointer;
+  background: #f5b820;
+  box-shadow: 0 0 0 6px var(--accent-glow), var(--shadow-sm);
+  transform: translateY(-1px);
 }
 
-/* Assignment Section (Glass Panel) */
-.assignment-list-homepage {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 15px;
-
-    background: rgba(255, 255, 255, 0.05); /* transparent glass */
-    border: 1px solid rgba(255,255,255,0.2); /* subtle border */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* soft shadow */
-    backdrop-filter: blur(8px); /* glass/frosted effect */
-    -webkit-backdrop-filter: blur(8px);
+.add-assignment:active {
+  transform: translateY(0);
 }
 
-/* Card Container (Responsive) */
+/* ── Card Grid ── */
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-    justify-content: center; /* center grid inside section */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
 }
 
-/* Assignment Card */
+/* ── Assignment Card ── */
 .assignment-card {
-    background: rgba(0, 139, 139, 0.8); /* darkcyan with transparency */
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.35s;
-    /* cubic-bezier for bounce effect */
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--bounce), box-shadow var(--transition), border-color var(--transition);
 }
 
-/* Hover with bounce effect */
+/* Amber left-edge accent bar */
+.assignment-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  border-radius: var(--radius-pill) 0 0 var(--radius-pill);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
 .assignment-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-accent);
 }
 
-/* Button inside card */
-.assignment-card button {
-    background-color: white;
-    color: black;
-    padding: 10px 15px;
-    border-radius: 10px;
-    border: 1px solid black;
-    transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.35s;
+.assignment-card:hover::before {
+  opacity: 1;
 }
 
-/* Match hover effect with card */
-.assignment-card:hover button {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-    cursor: pointer;
-}
-
-/* Typography */
+/* Card number */
 .assignment-card h1 {
-    margin: 0;
-    font-size: 2rem;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin: 0;
+  opacity: 0.9;
 }
 
+/* Card subtitle */
 .assignment-card h3 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: normal;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4;
 }
 
-/* PICK THE SUBJECT OPTIONS */
-/* list of subjects cards*/
-.subject-type-container {
-    display: flex;
-    flex-direction: column;
-    gap: 50px; /* spacing between rows */
-    align-items: center; /* center the columns */
+/* Mark As Done button */
+.assignment-card button,
+.done-btn {
+  margin-top: auto;
+  align-self: flex-start;
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.assignment-type-container {
-    display: flex;
-    flex-direction: column;
-    gap: 50px; /* spacing between rows */
-    align-items: center; /* center the columns */
+.assignment-card button:hover,
+.done-btn:hover {
+  background: var(--accent);
+  color: #0d1117;
+  transform: none;
+  box-shadow: 0 4px 14px var(--accent-glow);
 }
 
-.test-type-container {
-    display: flex;
-    flex-direction: column;
-    gap: 50px; /* spacing between rows */
-    align-items: center; /* center the columns */
-}
-
-.publish-prompt-container {
-    margin-top: 50px;
-    margin-left: 20px;
-    margin-right: 20px;
-    display: flex;
-    flex-direction: column; /* stack vertically */
-    align-items: center;    /* center horizontally */
-    gap: 20px;
-    padding: 30px;
-    border: 2px solid rgba(0, 0, 0, 0.2); /* soft border */
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1); /* transparent look */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* soft fading shadow */
-    backdrop-filter: blur(5px); /* optional: glass effect */
-}
-
-.publish-wrapper {
-    display: flex;
-    gap: 20px; /* space between buttons */
-}
-
-.publish-button {
-    background-color: darkcyan;
-    color: white;
-    height: 40px;
-    width: 80px;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-}
-
+/* ── Flow Pages (Subject / Type / Date) ── */
+.subject-type-container,
+.assignment-type-container,
+.test-type-container,
 .due-date-container {
-    display: flex;
-    flex-direction: column;
-    gap: 50px; /* spacing between rows */
-    align-items: center; /* center the columns */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 60px 24px 80px;
 }
 
+.subject-type-container h2,
+.assignment-type-container h2,
+.test-type-container h2,
+.due-date-container h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--text-primary);
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.subject-type-container h2::after,
+.assignment-type-container h2::after,
+.test-type-container h2::after,
+.due-date-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: var(--radius-pill);
+}
+
+/* ── Button Grid (3-column) ── */
 .sub-column {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px; /* spacing between buttons in the same row */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
 .sub-column a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 125px;    /* fixed width */
-    height: 125px;   /* fixed height for perfect circle */
-    background-color: darkcyan;
-    color: white;
-    border-radius: 50%;
-    text-decoration: none;
-    text-align: center;
-    font-weight: bold;
-    transition: transform 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.82rem;
+  text-align: center;
+  padding: 12px;
+  line-height: 1.3;
+  transition: transform var(--bounce), background var(--transition), border-color var(--transition), box-shadow var(--transition), color var(--transition);
+  position: relative;
+}
+
+.sub-column a::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent) 0deg, transparent 0deg);
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: -1;
 }
 
 .sub-column a:hover {
-    transform: scale(1.1);
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.1);
+  box-shadow: 0 0 0 4px var(--accent-glow), var(--shadow-md);
 }
 
+/* ── Back Button ── */
+.back-btn {
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  padding: 10px 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 8px;
+}
 
+.back-btn:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Publish Page ── */
+.publish-prompt-container {
+  max-width: 480px;
+  margin: 80px auto;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.publish-prompt-container h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--text-primary);
+}
+
+.publish-wrapper {
+  display: flex;
+  gap: 14px;
+}
+
+.publish-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 36px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: var(--transition);
+  min-width: 100px;
+}
+
+/* Yes = amber fill */
+.publish-button:first-child {
+  background: var(--accent);
+  color: #0d1117;
+  box-shadow: 0 0 0 0 var(--accent-glow);
+}
+
+.publish-button:first-child:hover {
+  background: #f5b820;
+  box-shadow: 0 0 0 6px var(--accent-glow), var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+/* No = ghost */
+.publish-button:last-child {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.publish-button:last-child:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ── Details Page ── */
+.assignment {
+  max-width: 560px;
+  margin: 60px auto;
+  padding: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  animation: fadeSlideUp 0.35s ease both;
+}
+
+.assignment h3 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.assignment p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.assignment p:last-of-type {
+  border-bottom: none;
+}
+
+#close-details {
+  margin-top: 28px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 10px 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#close-details:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* ── Empty State ── */
+.card-container > p {
+  color: var(--text-dim);
+  font-style: italic;
+  font-size: 0.95rem;
+  grid-column: 1 / -1;
+  padding: 32px 0;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bg-card-alt); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .assignment-list-homepage {
+    margin: 24px 16px;
+    padding: 24px 20px;
+  }
+
+  .sub-column {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .sub-column a {
+    width: 100px;
+    height: 100px;
+    font-size: 0.78rem;
+  }
+
+  .publish-prompt-container {
+    margin: 40px 16px;
+    padding: 36px 24px;
+  }
+
+  .assignment {
+    margin: 32px 16px;
+    padding: 28px 20px;
+  }
+}
