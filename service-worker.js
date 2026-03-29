@@ -2,13 +2,13 @@
 
 const CACHE_NAME = "assignment-tracker-v1";
 const ASSETS_TO_CACHE = [
-  "/",                    // index.html
   "/index.html",
   "/css/styles.css",
   "/js/app.js",
   "/js/ui.js",
   "/js/storage.js",
-  "/assets/icons"
+  "/assets/icons/icon-192.png",
+  "/assets/icons/icon-512.png",
   // Add any icons/images here
 ];
 
