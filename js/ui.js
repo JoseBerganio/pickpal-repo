@@ -26,7 +26,7 @@ const UI = (() => {
   ============================= */
   function renderDashboard(data) {
     appContainer.innerHTML = `
-      <header><h2>Assignment Tracker</h2></header>
+      <header><h2>PickPal by Flexiwoo</h2></header>
       <div class="list-container">
         <div class="assignment-list-homepage">
           <h2>Assignments</h2>
