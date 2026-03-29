@@ -1,0 +1,198 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+/* Header */
+
+header {
+    background-color: darkcyan;
+}
+
+header h2 {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Add Assignment Button */
+.add-assignment {
+    background-color: darkcyan;
+    text-decoration: none;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 15px;
+    display: inline-block;
+    margin: 20px 0;
+    transition: 0.25s;
+}
+
+.add-assignment:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+/* Assignment Section (Glass Panel) */
+.assignment-list-homepage {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.05); /* transparent glass */
+    border: 1px solid rgba(255,255,255,0.2); /* subtle border */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* soft shadow */
+    backdrop-filter: blur(8px); /* glass/frosted effect */
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Card Container (Responsive) */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center; /* center grid inside section */
+}
+
+/* Assignment Card */
+.assignment-card {
+    background: rgba(0, 139, 139, 0.8); /* darkcyan with transparency */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.35s;
+    /* cubic-bezier for bounce effect */
+}
+
+/* Hover with bounce effect */
+.assignment-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+/* Button inside card */
+.assignment-card button {
+    background-color: white;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid black;
+    transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.35s;
+}
+
+/* Match hover effect with card */
+.assignment-card:hover button {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+/* Typography */
+.assignment-card h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.assignment-card h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+/* PICK THE SUBJECT OPTIONS */
+/* list of subjects cards*/
+.subject-type-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* spacing between rows */
+    align-items: center; /* center the columns */
+}
+
+.assignment-type-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* spacing between rows */
+    align-items: center; /* center the columns */
+}
+
+.test-type-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* spacing between rows */
+    align-items: center; /* center the columns */
+}
+
+.publish-prompt-container {
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column; /* stack vertically */
+    align-items: center;    /* center horizontally */
+    gap: 20px;
+    padding: 30px;
+    border: 2px solid rgba(0, 0, 0, 0.2); /* soft border */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* transparent look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* soft fading shadow */
+    backdrop-filter: blur(5px); /* optional: glass effect */
+}
+
+.publish-wrapper {
+    display: flex;
+    gap: 20px; /* space between buttons */
+}
+
+.publish-button {
+    background-color: darkcyan;
+    color: white;
+    height: 40px;
+    width: 80px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.due-date-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* spacing between rows */
+    align-items: center; /* center the columns */
+}
+
+.sub-column {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* spacing between buttons in the same row */
+}
+
+.sub-column a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 125px;    /* fixed width */
+    height: 125px;   /* fixed height for perfect circle */
+    background-color: darkcyan;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.sub-column a:hover {
+    transform: scale(1.1);
+}
+
+
